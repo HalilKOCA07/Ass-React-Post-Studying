@@ -3,5 +3,28 @@
     text-align: center;
     display: flex;
     justify-content: center;
+    background-color: transparent;
+    font-size: 2rem;
+    border: none;
 
+}
+
+.btnUserInfo{
+    border: none;
+    font-size: 2rem;
+    background-color: transparent;
+}
+
+.btnMale{
+    border: none;
+    font-size: 2rem;
+    background-color: transparent;
+    color: blue;
+}
+
+.btnFemale{
+    border: none;
+    font-size: 2rem;
+    background-color: transparent;
+    color: rgb(238, 16, 171);
 }

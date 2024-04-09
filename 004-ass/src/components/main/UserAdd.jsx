@@ -2,27 +2,36 @@ import Table from "react-bootstrap/Table";
 import react, { useState } from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-export const UserAdd = ({ users, getUser }) => {
+export const UserAdd = ({ users, getUser, inputValue}) => {
   const [userList, setUserList] = useState([]);
+  const [warningUser, setWarningUser] = useState("");
 
   const AddUserToList = (newUser) => {
     setUserList([...userList, newUser]);
   };
 
-  console.log(userList);
-
   const handleAddUser = () => {
-    AddUserToList({
-      name: `${users?.name?.title} ${users?.name?.first} ${users?.name?.last}`,
-      email: users?.email,
-      age: users?.dob.age,
-      id: crypto.randomUUID(),
-    });
+    const ekliuser = userList.find((item) => item.email == users.email);
+
+    if (ekliuser) {
+      setWarningUser("Bu User Ekli Başka Bir User Ekle");
+    } else {
+      AddUserToList({
+        name: `${users?.name?.title} ${users?.name?.first} ${users?.name?.last}`,
+        email: users?.email,
+        age: users?.dob.age,
+        id: crypto.randomUUID(),
+        username: users?.login.username,
+      });
+      setWarningUser("");
+    }
   };
 
   const handleDelete = (id) => {
     setUserList(userList.filter((delUser) => delUser.id !== id));
   };
+
+const filterUsers= userList.filter((user) => user?.name.toLowerCase().includes(inputValue.toLowerCase()));
 
   return (
     <>
@@ -37,7 +46,7 @@ export const UserAdd = ({ users, getUser }) => {
           Add User
         </button>
       </div>
-
+      {warningUser && <div>{warningUser}</div>}
       {userList?.length ? (
         <Table striped bordered hover variant="danger">
           <thead>
@@ -50,7 +59,7 @@ export const UserAdd = ({ users, getUser }) => {
             </tr>
           </thead>
           <tbody>
-            {userList.map(({ name, email, age, id }, index) => (
+            {filterUsers.map(({ name, email, age, id}, index) => (
               <tr id={id}>
                 <td>{index + 1}</td>
                 <td>{name}</td>

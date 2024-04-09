@@ -33,12 +33,16 @@ export const Home = () => {
     }, [])
     console.log(userShow)
 
+    const [inputValue, setInputValue] = useState(" ")
+
+    console.log(inputValue)
+
   return (
     <>
-      <Header />
+      <Header setInputValue={setInputValue}/>
       <User userShow={userShow}/> 
       {/* içine verilerimi set ettimğim userShow u kullanmak için user.jsx'e  gönderdim */}
-      <UserAdd users={userShow} getUser={getUser}/>
+      <UserAdd users={userShow} getUser={getUser} inputValue={inputValue}/>
     </>
   );
 };

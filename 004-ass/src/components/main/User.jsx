@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import styleUser from "./user.module.scss"
+import {
+    FcBusinessman,
+    FcBusinesswoman,
+    FcAddressBook,
+    FcCellPhone,
+    FcShop,
+  } from "react-icons/fc";
+  import { FaBirthdayCake } from "react-icons/fa";
+  import styleBtn from "./user.module.scss"
 
 export const User = ({userShow}) => {
 //* kullanıcı biligilerini butan üzerine maus ile geldiğimde onMouseEnter metodu ile ilgili sekmenin bilgilerini açılması için booleon değer içeren useState leri oluşturdum *** örneğin isim butonun üzerine geldiğimde showName true değeri alırken diğerleri False değeri alacak true değeri alanlar opacity si 1 false değerinde olanların opacity si 0 olacak böylece sadece isim gözükecek diğerleri gözükmeyecek*** */
@@ -57,20 +65,20 @@ const showUserPhone = () => {
       </Card.Body>
       <Card.Footer className={styleUser.userInfo}>
 
-            <Card.Footer className='text-muted position-absolute' style={{opacity: showName ? 1 : 0}}>{`${userShow?.name?.title} ${userShow?.name?.first} ${userShow?.name?.last}`}</Card.Footer>
-            <Card.Footer className='text-muted position-absolute' style={{opacity: showEmail ? 1 : 0}}>{userShow?.email}</Card.Footer>
-            <Card.Footer className='text-muted position-absolute' style={{opacity: showAge ? 1 : 0}}>{userShow?.dob?.age}</Card.Footer>
-            <Card.Footer className='text-muted position-absolute' style={{opacity: showCity ? 1 : 0}}>{`${userShow?.location?.city} in ${userShow?.location?.country}`}</Card.Footer>
-            <Card.Footer className='text-muted position-absolute' style={{opacity: showPhone ? 1 : 0}}>{userShow?.phone}</Card.Footer>
+            <p className={'position-absolute'} style={{opacity: showName ? 1 : 0}}>{`${userShow?.name?.title} ${userShow?.name?.first} ${userShow?.name?.last}`}</p>
+            <p className='text-muted position-absolute' style={{opacity: showEmail ? 1 : 0}}>{userShow?.email}</p>
+            <p className='text-muted position-absolute' style={{opacity: showAge ? 1 : 0}}>{userShow?.dob?.age}</p>
+            <p className='text-muted position-absolute' style={{opacity: showCity ? 1 : 0}}>{`${userShow?.location?.city} in ${userShow?.location?.country}`}</p>
+            <p className='text-muted position-absolute' style={{opacity: showPhone ? 1 : 0}}>{userShow?.phone}</p>
       </Card.Footer>
  
 
       <Card.Footer className="text-muted d-flex justify-content-evenly">
-        <button className="btn btn-primary" onMouseEnter={showUserName}>1</button>
-        <button className="btn btn-primary"  onMouseEnter={showUserEmail}>2</button>
-        <button className="btn btn-primary"  onMouseEnter={showUserAge}>3</button>
-        <button className="btn btn-primary"  onMouseEnter={showUserCity}>4</button>
-        <button className="btn btn-primary"  onMouseEnter={showUserPhone}>5</button>
+        <button className={styleBtn.btnUserInfo} onMouseEnter={showUserName}>{userShow.gender === "male" ? <FcBusinessman /> : <FcBusinesswoman />}</button>
+        <button className={styleBtn.btnUserInfo} onMouseEnter={showUserEmail}><FcAddressBook /></button>
+        <button className={userShow.gender === "male" ? `${styleBtn.btnMale}` : `${styleBtn.btnFemale}`}onMouseEnter={showUserAge}><FaBirthdayCake /></button>
+        <button className={styleBtn.btnUserInfo} onMouseEnter={showUserCity}> <FcCellPhone /></button>
+        <button className={styleBtn.btnUserInfo} onMouseEnter={showUserPhone}><FcShop /></button>
       </Card.Footer>
     </Card>
         </>
