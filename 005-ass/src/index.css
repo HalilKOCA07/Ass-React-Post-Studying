@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.formContainer{
+  @apply w-2/4 m-auto mt-5 bg-green-400 gap-1 p-2 rounded-lg shadow-orange-300 shadow-lg 
+}
+label{
+  @apply text-lg text-red-500
+}
+span{
+  @apply bg-white text-base
+}
