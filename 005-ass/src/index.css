@@ -8,6 +8,3 @@
 label{
   @apply text-lg text-red-500
 }
-span{
-  @apply bg-white text-base
-}
