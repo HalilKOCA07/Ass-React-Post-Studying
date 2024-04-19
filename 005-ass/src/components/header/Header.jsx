@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function Header() {
+export default function Header() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -70,7 +70,7 @@ export function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Link
+                <link
                   key={item.name}
                   as="a"
                   to={item.href}
@@ -83,7 +83,7 @@ export function Header() {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Disclosure.Link>
+                </link>
               ))}
             </div>
           </Disclosure.Panel>
