@@ -79,7 +79,7 @@ const Input = () => {
               <label for="basic-url">Product Image</label>
               <div className="mb-3 shadow-lg">
                 <input
-                placeholder="https://..."
+                  placeholder="https://..."
                   id="basic-url"
                   aria-describedby="basic-addon3"
                   value={image}
@@ -87,10 +87,10 @@ const Input = () => {
                 />
               </div>
               <div className={style.addProductBtn} type="submit">
-              <FaShoppingCart />
-                <p>
-                 Add The Product
-                </p>
+                <button type="submit">
+                    {/* <p className={style.icon}><FaShoppingCart /></p> */}
+                    <p className={style.submitBtn}>Add The Product</p>
+                </button>
               </div>
             </form>
           </div>
