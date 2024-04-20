@@ -27,7 +27,7 @@ const Input = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className={style.hideShowBtn}>
         <button
           className={hideShow ? style.showBtn : style.hideBtn}
