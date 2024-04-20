@@ -3,7 +3,7 @@ import { useLoginContext } from "../context/LoginProvider"
 
 const ProviteRouter = () => {
    
-    const {loginIn, setLoginIn} = useLoginContext()
+    const {loginIn} = useLoginContext()
 
     return loginIn ? <Outlet /> : <Navigate to="/login" />
 }

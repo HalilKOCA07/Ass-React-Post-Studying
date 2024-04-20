@@ -8,6 +8,9 @@ import ApiProvider from "../context/ProductsApi";
 import LoginProvider from "../context/LoginProvider";
 import ProviteRouter from "./PrivateRouter";
 import Login from "../pages/Login";
+import Contact from "../pages/Contact";
+import About from "../pages/About";
+import Footer from "./footer/Footer";
 
 const Layout = () => {
   return (
@@ -19,12 +22,15 @@ const Layout = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
 
-            {/* <Route path="/input" element={<ProviteRouter />}> */}
-              <Route path="input" element={<Input />} />
-            {/* </Route> */}
+            <Route path="/input" element={<ProviteRouter />}>
+              <Route path="" element={<Input />} />
+            </Route>
 
             <Route path="/products" element={<Products />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </LoginProvider>
     </ApiProvider>
