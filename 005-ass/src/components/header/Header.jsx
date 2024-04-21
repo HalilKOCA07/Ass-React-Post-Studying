@@ -7,6 +7,8 @@ initTWE({ Collapse });
 
 const Header = () => {
   const { loginIn, setLoginIn } = useLoginContext();
+  const loggState = localStorage.getItem("user")
+
   return (
     // <!-- Main navigation container -->
     <nav
@@ -121,14 +123,14 @@ const Header = () => {
             </div>
           </div>
           <div class="mb-4 ps-2 lg:mb-0 lg:pe-1 lg:ps-0" data-twe-nav-link-ref>
-            {!loginIn ? (            <a
+            {!loggState ? (            <a
               href="/login"
               class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
             >
               Login
             </a>) : (            <a
               href="/login"
-              onClick={() => setLoginIn(false)}
+              onClick={() => localStorage.removeItem("user")}
               class="p-0 text-black/60 transition duration-200 hover:text-black/80 hover:ease-in-out focus:text-black/80 active:text-black/80 motion-reduce:transition-none dark:text-white/60 dark:hover:text-white/80 dark:focus:text-white/80 dark:active:text-white/80 lg:px-2"
             >
               LogOut

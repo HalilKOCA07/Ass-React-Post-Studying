@@ -6,7 +6,7 @@ import Input from "../pages/Input";
 import Products from "../pages/Products";
 import ApiProvider from "../context/ProductsApi";
 import LoginProvider from "../context/LoginProvider";
-import ProviteRouter from "./PrivateRouter";
+import PrivateRouter from "./PrivateRouter";
 import Login from "../pages/Login";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
@@ -19,16 +19,17 @@ const Layout = () => {
         <BrowserRouter>
           <Header />
           <Routes>
+
+            <Route path="/home" element={<Home />}/>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-
-            <Route path="/input" element={<ProviteRouter />}>
-              <Route path="" element={<Input />} />
+            <Route path="/input" element={<PrivateRouter />}>
+              <Route path="/input" element={<Input />}/>
             </Route>
-
             <Route path="/products" element={<Products />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/login" element={<Login />}/>
+            
           </Routes>
           <Footer />
         </BrowserRouter>

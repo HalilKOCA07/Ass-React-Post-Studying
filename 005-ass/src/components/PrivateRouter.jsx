@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom"
 import { useLoginContext } from "../context/LoginProvider"
 
-const ProviteRouter = () => {
+const PrivateRouter = () => {
    
     const {loginIn} = useLoginContext()
 
     return loginIn ? <Outlet /> : <Navigate to="/login" />
 }
 
-export default ProviteRouter
+export default PrivateRouter

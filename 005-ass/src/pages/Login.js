@@ -6,13 +6,20 @@ import { FaLinkedinIn } from "react-icons/fa";
 import style from "../sass/login.module.scss";
 // Initialization for ES Users
 import { Input, Ripple, initTWE } from "tw-elements";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 initTWE({ Input, Ripple });
 
 const Login = () => {
   const { loginIn, setLoginIn } = useLoginContext();
   const navigate = useNavigate();
+
+    const loggedInUser = localStorage.getItem("user")
+    if(loggedInUser){
+      setLoginIn(true)
+      navigate("/input")
+    }
+  
 
   // const handleSubmit = (e) => {
   //     e.preventDefault()
@@ -31,7 +38,9 @@ const Login = () => {
     e.preventDefault();
     if (user.email == email && user.password == password) {
       setLoginIn(true);
-      navigate("/input");
+      localStorage.setItem("user", user.email)
+        navigate("/input");
+
       console.log("login işlemi başarılı");
     } else {
       alert("email adresini veya password hatalı :(");
@@ -106,11 +115,13 @@ const Login = () => {
                   <label htmlFor="loginEmail">Email adress</label>
                   <input
                     type="email"
-                    class=" shadow-lg w-[30rem] shadow-inner border-red-200 border-2 peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+                    class="shadow-lg w-[30rem] shadow-inner border-red-200 border-2 peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                     id="loginEmail"
                     placeholder="codeveloper@cw.com"
                     value={user.email}
-                    onChange={(e) => setUser(e.target.value)}
+                    onChange={(e) =>
+                      setUser({ ...user, email: e.target.value })
+                    }
                   />
                 </div>
 
@@ -119,11 +130,13 @@ const Login = () => {
                   <label htmlFor="loginPassword">Password</label>
                   <input
                     type="password"
-                    class=" shadow-lg w-[30rem] shadow-inner border-red-200 border-2 peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+                    class=" shadow-lg w-[30rem] shadow-inner border-red-200 border-2 peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                     id="loginPassword"
                     placeholder="admin"
                     value={user.password}
-                    onChange={(e) => setUser(e.target.value)}
+                    onChange={(e) =>
+                      setUser({ ...user, password: e.target.value })
+                    }
                   />
                 </div>
                 <div class="mb-6 flex items-center justify-evenly">
